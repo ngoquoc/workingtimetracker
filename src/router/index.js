@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import TimeEntries from '@/components/TimeEntries'
+import UserSettings from '@/components/UserSettings'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/time-entries',
       name: 'TimeEntries',
       component: TimeEntries
+    },
+    {
+      path: '/settings',
+      name: 'UserSettings',
+      component: UserSettings
     }
   ]
 })

@@ -16,6 +16,12 @@ Vue.component('time-entries-grid', TimeEntriesGrid);
 import MainNav from '@/components/MainNav'
 Vue.component('main-nav', MainNav);
 
+import UserPreferences from '@/components/UserPreferences'
+Vue.component('user-preferences', UserPreferences);
+
+import ChangePassword from '@/components/ChangePassword'
+Vue.component('change-password', ChangePassword);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
