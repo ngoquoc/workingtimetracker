@@ -1,17 +1,17 @@
 <template>
 <md-layout class="main-nav">
   <md-layout>
-    <router-link tag="button" class="md-button nav-link" to="/time-entries">
+    <router-link tag="button" class="md-button nav-link" to="/app/time-entries">
       <md-icon>list</md-icon>
       Time entries
     </router-link>
-    <router-link tag="button" class="md-button nav-link" to="/users">
+    <router-link tag="button" class="md-button nav-link" to="/app/users">
       <md-icon>people</md-icon>
       Users
     </router-link>
   </md-layout>
   <md-layout md-align="end">
-    <router-link tag="button" class="md-button nav-link" to="/settings">
+    <router-link tag="button" class="md-button nav-link" to="/app/settings">
       <md-icon>settings</md-icon>
       Settings
     </router-link>

@@ -1,33 +1,40 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import TimeEntries from '@/components/TimeEntries'
 import UserSettings from '@/components/UserSettings'
+import Users from '@/components/Users'
+import AppContainer from '@/components/AppContainer'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    },
-    {
       path: '/login',
       name: 'Login',
       component: Login
     },
     {
-      path: '/time-entries',
-      name: 'TimeEntries',
-      component: TimeEntries
-    },
-    {
-      path: '/settings',
-      name: 'UserSettings',
-      component: UserSettings
+      path: '/app',
+      component: AppContainer,
+      children: [
+        {
+          path: 'time-entries',
+          name: 'TimeEntries',
+          component: TimeEntries
+        },
+        {
+          path: 'users',
+          name: 'Users',
+          component: Users
+        },
+        {
+          path: 'settings',
+          name: 'UserSettings',
+          component: UserSettings
+        }
+      ]
     }
   ]
 })

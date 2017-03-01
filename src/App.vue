@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <main-nav></main-nav>
-    <router-view class="router-view"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -12,7 +11,4 @@ export default {
 </script>
 
 <style>
-.router-view {
-  margin-top: 5vh;
-}
 </style>
