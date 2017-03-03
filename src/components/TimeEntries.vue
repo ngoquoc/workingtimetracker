@@ -1,10 +1,14 @@
 <template>
   <md-layout md-align="center">
-    <time-entries-grid></time-entries-grid>
+    <md-layout md-align="center" md-flex="70">
+      <time-entries-grid></time-entries-grid>
+    </md-layout>
   </md-layout>
 </template>
 
 <script>
+import TimeEntriesGrid from '@/components/TimeEntries.grid'
+
 export default {
   name: 'time-entries',
   data () {
@@ -13,6 +17,9 @@ export default {
       password: '',
       loading: false
     }
+  },
+  components: {
+    TimeEntriesGrid
   }
 }
 </script>

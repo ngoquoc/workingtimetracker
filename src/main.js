@@ -8,10 +8,7 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css';
 
 Vue.use(VueMaterial)
-Vue.config.productionTip = false
-
-import TimeEntriesGrid from '@/components/TimeEntries.grid'
-Vue.component('time-entries-grid', TimeEntriesGrid);
+Vue.config.productionTip = false;
 
 import MainNav from '@/components/MainNav'
 Vue.component('main-nav', MainNav);
@@ -21,6 +18,12 @@ Vue.component('user-preferences', UserPreferences);
 
 import ChangePassword from '@/components/ChangePassword'
 Vue.component('change-password', ChangePassword);
+
+Vue.material.registerTheme('default', {
+  primary: 'teal',
+  accent: 'teal',
+  background: 'white'
+})
 
 /* eslint-disable no-new */
 new Vue({

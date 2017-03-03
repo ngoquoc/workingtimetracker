@@ -1,18 +1,21 @@
 <template>
   <md-layout md-align="center">
-    <time-entries-grid></time-entries-grid>
+    <md-layout md-align="center" md-flex="70">
+      <users-grid></users-grid>
+    </md-layout>
   </md-layout>
 </template>
 
 <script>
+import UsersGrid from '@/components/Users.grid'
+
 export default {
   name: 'time-entries',
   data () {
-    return {
-      email: '',
-      password: '',
-      loading: false
-    }
+    return {};
+  },
+  components: {
+    UsersGrid
   }
 }
 </script>
