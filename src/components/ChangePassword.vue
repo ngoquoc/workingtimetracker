@@ -25,12 +25,15 @@
     </md-card-content>
 
     <md-card-actions>
-      <md-button v-show="!loading" type="submit">Submit</md-button>
+      <md-button v-show="!loading" @click.native="changePassword()">Submit</md-button>
+      <md-button v-show="loading" disabled>Submiting ...</md-button>
     </md-card-actions>
   </md-layout>
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'change-password',
   data () {
@@ -39,6 +42,29 @@ export default {
       newPassword: '',
       newPasswordConfirm: '',
       loading: false
+    }
+  },
+  methods: {
+    changePassword() {
+      var that = this;
+      that.loading = true;
+
+      Vue.axios.post('/auth/changePassword', {
+        oldPassword: that.oldPassword,
+        newPassword: that.newPassword,
+        newPasswordConfirm: that.newPasswordConfirm
+      })
+      .then(function (response) {
+        that.loading = false;
+      })
+      .catch(function (error) {
+        that.loading = false;
+        if (error && error.response && error.response.data && error.response.data.message){
+          alert(error.response.data.message);
+        } else {
+          alert('Unexpected error happens.');
+        }
+      });
     }
   }
 }
