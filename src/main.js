@@ -15,6 +15,10 @@ import MainNav from '@/components/MainNav'
 import UserPreferences from '@/components/UserPreferences'
 import ChangePassword from '@/components/ChangePassword'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+import locale from 'element-ui/lib/locale/lang/en'
+
 Vue.router = router
 
 Vue.use(VueAxios, axios)
@@ -48,6 +52,7 @@ Vue.use(VueAuth, {
 
 Vue.axios.defaults.baseURL = 'http://localhost:31798/api/';
 
+Vue.use(ElementUI, { locale })
 Vue.use(VueMaterial)
 Vue.config.productionTip = false;
 

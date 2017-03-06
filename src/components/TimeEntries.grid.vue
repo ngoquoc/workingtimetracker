@@ -3,7 +3,12 @@
 <md-table-card>
   <md-toolbar>
     <h1 class="md-title">Time entries</h1>
-
+    <md-button @click.native="showNewTimeEntryForm()">
+      <md-icon>add</md-icon>
+    </md-button>
+    <md-button @click.native="fetchTimeEntries()">
+      <md-icon>refresh</md-icon>
+    </md-button>
     <md-switch class="md-primary">Show all entries</md-switch>
   </md-toolbar>
 
@@ -32,9 +37,44 @@
           <span>{{ row.duration }}</span>
         </md-table-cell>
         <md-button class="md-icon-button">
-            <md-icon>edit</md-icon>
-          </md-button>
+          <md-icon>edit</md-icon>
+        </md-button>
       </md-table-row>
+
+      <md-table-row>
+        <md-table-cell>
+          <md-input-container>
+            <md-select name="ownerName" id="ownerName" v-model="newTimeEntry.ownerId">
+              <md-option value="fight_club">Fight Club</md-option>
+              <md-option value="godfather">Godfather</md-option>
+              <md-option value="godfather_ii">Godfather II</md-option>
+              <md-option value="godfather_iii">Godfather III</md-option>
+              <md-option value="godfellas">Godfellas</md-option>
+              <md-option value="pulp_fiction">Pulp Fiction</md-option>
+              <md-option value="scarface">Scarface</md-option>
+            </md-select>
+          </md-input-container>
+        </md-table-cell>
+        <md-table-cell>
+          <el-date-picker v-model="newTimeEntry.date" type="date" placeholder="Pick a day">
+          </el-date-picker>
+        </md-table-cell>
+        <md-table-cell>
+          <md-input-container>
+            <md-textarea required v-model="newTimeEntry.description"></md-textarea>
+          </md-input-container>
+        </md-table-cell>
+        <md-table-cell>
+          <md-input-container>
+            <md-input type="number" required v-model="newTimeEntry.duration"></md-input>
+          </md-input-container>
+        </md-table-cell>
+
+        <md-button class="md-icon-button" @click.native="saveNewTimeEntry()">
+          <md-icon>check</md-icon>
+        </md-button>
+      </md-table-row>
+
     </md-table-body>
   </md-table>
 </md-table-card>
@@ -42,42 +82,47 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'time-entries-grid',
-  data: () => ({
-    timeEntries: [
-      {
-        ownerId: '123456789',
-        ownerName: 'Quoc Ngo',
-        description: 'Working on Toptal test project',
+  data() {
+    return {
+      timeEntries: [],
+      newTimeEntry: {
+        ownerId: '',
+        ownerName: '',
+        description: '',
         date: new Date(),
-        duration: 0.6
-      },
-      {
-        ownerId: '123456789',
-        ownerName: 'Quoc Ngo',
-        description: 'Working on Toptal test project',
-        date: new Date(),
-        duration: 0.6
-      },
-      {
-        ownerId: '123456789',
-        ownerName: 'Quoc Ngo',
-        description: `Toolbars appear a step above the content they affect. They may constrain their width to accommodate material passing over them.
-
-You need to wrap all the elements of your toolbar in a element with the class md-toolbar-container for medium and large toolbars. On large toolbars you can have two containers to push content to bottom.`,
-        date: new Date(),
-        duration: 0.6
-      },
-      {
-        ownerId: '123456789',
-        ownerName: 'Quoc Ngo',
-        description: 'Working on Toptal test project',
-        date: new Date(),
-        duration: 0.6
+        duration: 0
       }
-    ]
-  })
+    }
+  },
+  ready() {
+    this.fetchTimeEntries()
+  },
+  created: function () {
+    this.fetchTimeEntries()
+  },
+  methods: {
+    fetchTimeEntries() {
+      var that = this;
+
+      Vue.axios.get('/timeEntry')
+      .then(resp => {
+        that.timeEntries = resp.data;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+    showNewTimeEntryForm() {
+      alert('new time entry form');
+    },
+    saveNewTimeEntry() {
+      console.log(this.newTimeEntry);
+    }
+  }
 }
 </script>
 
