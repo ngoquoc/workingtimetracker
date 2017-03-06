@@ -1,5 +1,8 @@
 <template>
   <md-layout class="register-page">
+    <md-layout md-flex='100' md-align='center'>
+      <span class='md-display-3'>Working time tracker</span>
+    </md-layout>
     <md-layout class="register-form" md-tag="form" novalidate @submit.stop.prevent="submit" md-flex="100" md-align="center">
       <md-layout md-tag="md-card" md-column md-flex="30" md-flex-medium="40" md-flex-small="60" md-flex-xsmall="90" class="md-primary">
         <md-card-header>
@@ -34,6 +37,11 @@
         </md-card-content>
 
         <md-card-actions>
+          <md-layout md-align="left">
+            <router-link tag="a" style="color:white;" to="/login">
+              Login
+            </router-link>
+          </md-layout>
           <md-button v-show="!loading" type="submit">Submit</md-button>
         </md-card-actions>
         
@@ -59,6 +67,9 @@ export default {
 
 <style scoped>
 .register-page {
-  padding: 25vh 2vh;
+  padding: 23.5vh 2vh;
+}
+.register-form {
+  margin-top: 2em;
 }
 </style>

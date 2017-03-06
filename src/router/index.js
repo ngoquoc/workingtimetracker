@@ -24,13 +24,16 @@ export default new Router({
     {
       path: '/app',
       component: AppContainer,
+      meta: { auth: true },
       children: [
         {
+          meta: { auth: ['ADMIN', 'USER'] },
           path: 'time-entries',
           name: 'TimeEntries',
           component: TimeEntries
         },
         {
+          meta: { auth: ['ADMIN', 'USER MANAGER'] },
           path: 'users',
           name: 'Users',
           component: Users

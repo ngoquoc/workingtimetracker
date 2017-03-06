@@ -1,11 +1,11 @@
 <template>
 <md-toolbar class="main-nav">
   <md-layout>
-    <router-link tag="span" class="md-button nav-link" to="/app/time-entries">
+    <router-link v-if="$auth.check(['ADMIN', 'USER'])"  tag="span" class="md-button nav-link" to="/app/time-entries">
       <md-icon>list</md-icon>
       Time entries
     </router-link>
-    <router-link tag="span" class="md-button nav-link" to="/app/users">
+    <router-link v-if="$auth.check(['ADMIN', 'USER MANAGER'])" tag="span" class="md-button nav-link" to="/app/users">
       <md-icon>people</md-icon>
       Users
     </router-link>
@@ -15,13 +15,26 @@
       <md-icon>settings</md-icon>
       Settings
     </router-link>
+    <md-button v-if="$auth.check()" @click.native="logout()">
+      Logout
+    </md-button>
   </md-layout>
 </md-toolbar>
 </template>
 
 <script>
 export default {
-  name: 'main-nav'
+  name: 'main-nav',
+  methods: {
+    logout() {
+      this.$auth.logout({
+        makeRequest: false,
+        success: function () {},
+        error: function () {},
+        redirect: '/login',
+      });
+    }
+  }
 }
 </script>
 
