@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     login: function() {
-      Vue.axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      //Vue.axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       this.loading = true;
       this.$auth.login({
         data: 'grant_type=password&username='+this.email+'&password='+this.password,

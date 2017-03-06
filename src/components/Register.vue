@@ -42,7 +42,8 @@
               Login
             </router-link>
           </md-layout>
-          <md-button v-show="!loading" type="submit">Submit</md-button>
+          <md-button v-show="!loading" @click.native="register()">Submit</md-button>
+          <md-button v-show="loading" disabled>Submitting ...</md-button>
         </md-card-actions>
         
       </md-layout>
@@ -51,6 +52,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'register',
   data: function() {
@@ -61,6 +64,35 @@ export default {
       passwordConfirm: '',
       loading: false
     };
+  },
+  methods: {
+    register() {
+      this.loading = true;
+      var that = this;
+
+      Vue.axios.post('/auth/register', {
+        Name: this.name,
+        Email: this.email,
+        Password: this.password,
+        PasswordConfirm: this.passwordConfirm,
+      })
+      .then(function (response) {
+        that.loading = false;
+        that.$auth.login({
+            data: 'grant_type=password&username='+that.email+'&password='+that.password,
+            rememberMe: true,
+            redirect: '/app'
+        });
+      })
+      .catch(function (error) {
+        that.loading = false;
+        if (error && error.response && error.response.data && error.response.data.message){
+          alert(error.response.data.message);
+        } else {
+          alert('Unexpected error happens.');
+        }
+      });
+    }
   }
 }
 </script>
