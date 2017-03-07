@@ -3,22 +3,19 @@
 <md-table-card>
   <md-toolbar>
     <h1 class="md-title">Time entries</h1>
-    <md-button @click.native="showNewTimeEntryForm()">
-      <md-icon>add</md-icon>
-    </md-button>
     <md-button @click.native="fetchTimeEntries()">
       <md-icon>refresh</md-icon>
     </md-button>
-    <md-switch class="md-primary">Show all entries</md-switch>
+    <md-switch class="md-primary" v-model="includeAllUsers">Show all entries</md-switch>
   </md-toolbar>
 
-  <md-table md-sort="date">
+  <md-table md-sort="date" v-on:sort="sort">
     <md-table-header>
       <md-table-row>
-        <md-table-head md-sort-by="ownerName">Owner</md-table-head>
-        <md-table-head md-sort-by="date">Date</md-table-head>
-        <md-table-head md-sort-by="note">Note         </md-table-head>
-        <md-table-head md-sort-by="duration">Hours</md-table-head>
+        <md-table-head md-sort-by="OwnerId">Owner</md-table-head>
+        <md-table-head md-sort-by="Date">Date</md-table-head>
+        <md-table-head md-sort-by="Note">Note         </md-table-head>
+        <md-table-head md-sort-by="Duration">Hours</md-table-head>
         <md-table-head></md-table-head>
       </md-table-row>
     </md-table-header>
@@ -96,7 +93,12 @@ export default {
         duration: 0
       },
       owners: [],
-      currentUser: {}
+      currentUser: {},
+      includeAllUsers: false,
+      sortInfo: {
+        name: 'Date',
+        type: 'desc'
+      }
     }
   },
   created: function () {
@@ -110,7 +112,12 @@ export default {
       var that = this;
       that.timeEntries = [];
 
-      Vue.axios.get('/timeEntry')
+      var endpoint = that.includeAllUsers ? '/timeEntry/all' : '/timeEntry';
+      Vue.axios.get(endpoint, {
+        params: {
+          '$orderby': that.sortInfo.name + ' ' + that.sortInfo.type
+        }
+      })
       .then(resp => {
         if (resp && resp.data && resp.data.length) {
           for (var i = 0; i < resp.data.length; ++i) {
@@ -120,8 +127,14 @@ export default {
           }
         }
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        if (error && error.response && error.response.status == 400 && error.response.data && error.response.data.message) {
+          alert(error.response.data.message);
+        } else if (error.response.status == 403) {
+          alert('You are not allowed to get this resource.');
+        } else {
+          alert('Unexpected error happens.');
+        }
       })
     },
     fetchOwners() {
@@ -153,9 +166,6 @@ export default {
         console.log(err);
       })
     },
-    showNewTimeEntryForm() {
-      alert('new time entry form');
-    },
     saveNewTimeEntry() {
       var self = this;
       self.newTimeEntry.loading = true;
@@ -180,6 +190,10 @@ export default {
           alert('Unexpected error happens.');
         }
       })
+    },
+    sort(arg) {
+      this.sortInfo = arg
+      this.fetchTimeEntries()
     }
   }
 }
