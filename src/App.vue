@@ -11,4 +11,10 @@ export default {
 </script>
 
 <style>
+.md-menu-content.md-active .md-list {
+  background: white;
+}
+.el-pager li.number {
+  margin-top: 0px;
+}
 </style>
