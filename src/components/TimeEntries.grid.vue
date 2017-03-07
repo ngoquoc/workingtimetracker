@@ -15,10 +15,11 @@
   <md-table md-sort="date">
     <md-table-header>
       <md-table-row>
-        <md-table-head md-sort-by="ownerName">Owner name</md-table-head>
+        <md-table-head md-sort-by="ownerName">Owner</md-table-head>
         <md-table-head md-sort-by="date">Date</md-table-head>
-        <md-table-head md-sort-by="description">Description</md-table-head>
-        <md-table-head md-sort-by="duration">Duration (hours)</md-table-head>
+        <md-table-head md-sort-by="note">Note         </md-table-head>
+        <md-table-head md-sort-by="duration">Hours</md-table-head>
+        <md-table-head></md-table-head>
       </md-table-row>
     </md-table-header>
 
@@ -31,7 +32,7 @@
           <span>{{ row.date.toLocaleDateString() }}</span>
         </md-table-cell>
         <md-table-cell>
-          <span>{{ row.description }}</span>
+          <span>{{ row.note }}</span>
         </md-table-cell>
         <md-table-cell>
           <span>{{ row.duration }}</span>
@@ -44,14 +45,10 @@
       <md-table-row>
         <md-table-cell>
           <md-input-container>
-            <md-select name="ownerName" id="ownerName" v-model="newTimeEntry.ownerId">
-              <md-option value="fight_club">Fight Club</md-option>
-              <md-option value="godfather">Godfather</md-option>
-              <md-option value="godfather_ii">Godfather II</md-option>
-              <md-option value="godfather_iii">Godfather III</md-option>
-              <md-option value="godfellas">Godfellas</md-option>
-              <md-option value="pulp_fiction">Pulp Fiction</md-option>
-              <md-option value="scarface">Scarface</md-option>
+            <md-select name="ownerName" id="ownerId" v-model="newTimeEntry.ownerId">
+              <md-option v-for="(owner, idx) in owners" :key="idx" :value="owner.id">
+                {{ owner.name }}
+              </md-option>
             </md-select>
           </md-input-container>
         </md-table-cell>
@@ -61,7 +58,7 @@
         </md-table-cell>
         <md-table-cell>
           <md-input-container>
-            <md-textarea required v-model="newTimeEntry.description"></md-textarea>
+            <md-textarea required v-model="newTimeEntry.note"></md-textarea>
           </md-input-container>
         </md-table-cell>
         <md-table-cell>
@@ -83,6 +80,7 @@
 
 <script>
 import Vue from 'vue'
+import GUID from '@/utils/uuid'
 
 export default {
   name: 'time-entries-grid',
@@ -90,27 +88,66 @@ export default {
     return {
       timeEntries: [],
       newTimeEntry: {
+        loading: false,
         ownerId: '',
         ownerName: '',
-        description: '',
+        note: '',
         date: new Date(),
         duration: 0
-      }
+      },
+      owners: [],
+      currentUser: {}
     }
   },
-  ready() {
-    this.fetchTimeEntries()
-  },
   created: function () {
+    this.currentUser = this.$auth.user()
+    this.newTimeEntry.ownerId = this.currentUser.id
     this.fetchTimeEntries()
+    this.fetchOwners()
   },
   methods: {
     fetchTimeEntries() {
       var that = this;
+      that.timeEntries = [];
 
       Vue.axios.get('/timeEntry')
       .then(resp => {
-        that.timeEntries = resp.data;
+        if (resp && resp.data && resp.data.length) {
+          for (var i = 0; i < resp.data.length; ++i) {
+            var te = resp.data[i];
+            te.date = new Date(te.date);
+            that.timeEntries.push(te);
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+    fetchOwners() {
+      var that = this;
+      
+      if (that.owners.length < 1) {
+        that.owners = [
+          {
+            id: that.currentUser.id,
+            name: that.currentUser.name
+          }
+        ]
+      } else {
+        that.owner = that.owners.slice(0, 1);
+      }
+
+      Vue.axios.get('/user')
+      .then(resp => {
+        if (resp.data && resp.data.users && resp.data.users.length) {
+          resp.data.users.foreach(u => {
+            that.owners.push({
+              id: u.id,
+              name: u.name
+            })
+          });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -120,7 +157,29 @@ export default {
       alert('new time entry form');
     },
     saveNewTimeEntry() {
-      console.log(this.newTimeEntry);
+      var self = this;
+      self.newTimeEntry.loading = true;
+      var newTimeEntryId = GUID.guid();
+
+      Vue.axios.put('timeEntry/'+newTimeEntryId, {
+        id: newTimeEntryId,
+        ownerId: self.newTimeEntry.ownerId,
+        note: self.newTimeEntry.note,
+        date: self.newTimeEntry.date,
+        duration: self.newTimeEntry.duration
+      })
+      .then(resp => {
+        self.newTimeEntry.loading = false;
+        self.fetchTimeEntries();
+      })
+      .catch(error => {
+        self.newTimeEntry.loading = false;
+        if (error && error.response && error.response.data && error.response.data.message){
+          alert(error.response.data.message);
+        } else {
+          alert('Unexpected error happens.');
+        }
+      })
     }
   }
 }

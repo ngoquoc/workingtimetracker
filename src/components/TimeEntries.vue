@@ -1,6 +1,6 @@
 <template>
   <md-layout md-align="center">
-    <md-layout md-align="center" md-flex="70">
+    <md-layout md-align="center" md-flex="90">
       <time-entries-grid></time-entries-grid>
     </md-layout>
   </md-layout>
