@@ -2,7 +2,7 @@ configuration: Release
 
 # restore NuGet packages
 before build:
-  - nuget restore
+  - cmd: nuget restore
 
 # package Web App project for Web Deploy
 build:
