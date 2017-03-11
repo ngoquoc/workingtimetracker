@@ -1,0 +1,10 @@
+configuration: Release
+
+# restore NuGet packages
+before build:
+  - nuget restore
+
+# package Web App project for Web Deploy
+build:
+  verbosity: minimal
+  publish_wap: true
