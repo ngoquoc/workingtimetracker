@@ -2,7 +2,7 @@ configuration: Release
 
 version: 1.0.{build}
 before_build:
-- cmd: nuget restore
+- cmd: cd api && nuget restore
 build:
   publish_wap: true
   verbosity: minimal
