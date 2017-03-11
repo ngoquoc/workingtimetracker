@@ -218,7 +218,8 @@ export default {
               ownerName: te.ownerName,
               note: te.note,
               date: new Date(te.date),
-              duration: te.duration
+              duration: te.duration,
+              isUnderPreferredWorkingHourPerDay: te.isUnderPreferredWorkingHourPerDay
             }
           })
         }
@@ -226,7 +227,7 @@ export default {
       .catch(error => {
         if (error && error.response && error.response.status == 400 && error.response.data && error.response.data.message) {
           alert(error.response.data.message);
-        } else if (error && error.response && error.response.status == 403) {
+        } else if (error && error.response && (error.response.status == 403 || error.response.status == 401)) {
           alert('You are not allowed to get this resource.');
         } else {
           alert('Unexpected error happens.');

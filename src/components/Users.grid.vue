@@ -192,7 +192,7 @@ export default {
       .catch(error => {
         if (error && error.response && error.response.status == 400 && error.response.data && error.response.data.message) {
           alert(error.response.data.message);
-        } else if (error && error.response && error.response.status == 403) {
+        } else if (error && error.response && (error.response.status == 403 || error.response.status == 401)) {
           alert('You are not allowed to get this resource.');
         } else {
           alert('Unexpected error happens.');
@@ -205,6 +205,10 @@ export default {
       
       Vue.axios.put('user/'+user.id, user)
       .then(resp => {
+        var currentUser = self.$auth.user()
+        if (user.id == currentUser.id) {
+          self.$auth.fetch()
+        }
         self.ignoreEditingUser()
         self.fetchUsers()
       })
@@ -212,7 +216,7 @@ export default {
         if (error && error.response && error.response.data && error.response.data.message){
           alert(error.response.data.message)
         } else if (error && error.response && error.response.status == 403) {
-          alert('You are not allowed to delete this user.');
+          alert('You are not allowed to update this user.');
         } else {
           console.warn(error)
           alert('Unexpected error happens.')
