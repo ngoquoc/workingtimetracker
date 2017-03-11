@@ -214,13 +214,13 @@ namespace WorkingTimeTracker.Test.Services
             var timeEntries = new[]
             {
                 new TimeEntry() { Id = Guid.NewGuid(), Owner = currentUser, OwnerId = currentUser.Id,
-                    Date = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.FromHours(7)) },
+                    Date = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero) },
                 new TimeEntry() { Id = Guid.NewGuid(), Owner = currentUser, OwnerId = currentUser.Id,
-                    Date = new DateTimeOffset(2017, 3, 5, 0, 10, 0, TimeSpan.FromHours(7)) },
+                    Date = new DateTimeOffset(2017, 3, 5, 0, 10, 0, TimeSpan.Zero) },
                 new TimeEntry() { Id = Guid.NewGuid(), Owner = currentUser, OwnerId = currentUser.Id,
-                    Date = new DateTimeOffset(2017, 2, 25, 0, 0, 0, TimeSpan.FromHours(7)) },
+                    Date = new DateTimeOffset(2017, 2, 25, 0, 0, 0, TimeSpan.Zero) },
                 new TimeEntry() { Id = Guid.NewGuid(), Owner = currentUser, OwnerId = currentUser.Id,
-                    Date = new DateTimeOffset(2017, 3, 6, 0, 0, 0, TimeSpan.FromHours(7)) }
+                    Date = new DateTimeOffset(2017, 3, 6, 0, 0, 0, TimeSpan.Zero) }
             };
 
             var timeEntryRepoMock = new Mock<ITimeEntryRepository>();
