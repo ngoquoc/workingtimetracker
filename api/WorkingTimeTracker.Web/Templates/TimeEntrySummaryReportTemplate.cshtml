@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+    <div>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Total time</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Length; i++)
+                {
+                    <tr class="@(Model[i].IsUnderPreferredWorkingHoursPerDay ? "danger" : "success")">
+                        <th scope="row">@(i + 1)</th>
+                        <td>@(Model[i].Date.ToString("dd/MM/yyyy"))</td>
+                        <td>@(Model[i].OwnerName)</td>
+                        <td>@(Model[i].TotalTime)h</td>
+                        <td>
+                            <ul>
+                                @foreach (var note in Model[i].Notes)
+                                {
+                                <li>@note</li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</body>
+</html>

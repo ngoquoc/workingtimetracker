@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingTimeTracker.Web", "WorkingTimeTracker.Web\WorkingTimeTracker.Web.csproj", "{04DBF738-65A6-4896-9C9F-7A3469957D43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingTimeTracker.Core", "WorkingTimeTracker.Core\WorkingTimeTracker.Core.csproj", "{94288D62-E859-4FCF-BDB3-2C6B02A6D3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingTimeTracker.Implementations", "WorkingTimeTracker.Implementations\WorkingTimeTracker.Implementations.csproj", "{2DA9363A-DFA4-43E0-911E-CB5D1F143D49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4FDDDADA-E085-4BBD-BCF8-20FF269B32F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingTimeTracker.Test", "WorkingTimeTracker.Test\WorkingTimeTracker.Test.csproj", "{D16ACFFF-8971-4A8A-AD94-ABA58E61003B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04DBF738-65A6-4896-9C9F-7A3469957D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DBF738-65A6-4896-9C9F-7A3469957D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DBF738-65A6-4896-9C9F-7A3469957D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DBF738-65A6-4896-9C9F-7A3469957D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94288D62-E859-4FCF-BDB3-2C6B02A6D3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94288D62-E859-4FCF-BDB3-2C6B02A6D3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94288D62-E859-4FCF-BDB3-2C6B02A6D3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94288D62-E859-4FCF-BDB3-2C6B02A6D3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA9363A-DFA4-43E0-911E-CB5D1F143D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA9363A-DFA4-43E0-911E-CB5D1F143D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA9363A-DFA4-43E0-911E-CB5D1F143D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA9363A-DFA4-43E0-911E-CB5D1F143D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16ACFFF-8971-4A8A-AD94-ABA58E61003B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16ACFFF-8971-4A8A-AD94-ABA58E61003B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16ACFFF-8971-4A8A-AD94-ABA58E61003B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16ACFFF-8971-4A8A-AD94-ABA58E61003B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D16ACFFF-8971-4A8A-AD94-ABA58E61003B} = {4FDDDADA-E085-4BBD-BCF8-20FF269B32F9}
+	EndGlobalSection
+EndGlobal
