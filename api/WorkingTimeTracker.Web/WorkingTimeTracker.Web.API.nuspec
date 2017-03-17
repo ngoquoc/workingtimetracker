@@ -9,4 +9,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Working time tracker tool</description>
   </metadata>
+  <files>
+    <file src="bin\release\*.*"/>
+    <file src="..\packages\EntityFramework.6.1.0\tools\migrate.exe" />
+    <file src="CI\*.ps1" />
+  </files>
 </package>
