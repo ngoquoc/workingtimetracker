@@ -1,1 +1,1 @@
-﻿.\migrate.exe WorkingTimeTracker.Implementations.dll /verbose
+﻿.\bin\migrate.exe WorkingTimeTracker.Implementations.dll /verbose
