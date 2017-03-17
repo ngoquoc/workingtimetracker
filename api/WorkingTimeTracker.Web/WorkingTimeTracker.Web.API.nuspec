@@ -10,8 +10,8 @@
     <description>Working time tracker tool</description>
   </metadata>
   <files>
-    <file src="bin\release\*.*"/>
-    <file src="..\..\packages\EntityFramework.6.1.0\tools\migrate.exe" />
+    <file src="bin\*.*"/>
+    <file src="..\packages\EntityFramework.6.1.0\tools\migrate.exe" />
     <file src="*.ps1" />
   </files>
 </package>
