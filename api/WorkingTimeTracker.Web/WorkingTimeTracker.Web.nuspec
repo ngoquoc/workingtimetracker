@@ -10,8 +10,17 @@
     <description>Working time tracker tool</description>
   </metadata>
   <files>
-    <file src="bin\*.*"/>
-    <file src="..\packages\EntityFramework.6.1.0\tools\migrate.exe" />
+    <file src="Areas\" target="Areas"/>
+    <file src="bin\" target="bin"/>
+    <file src="Content\" target="Content"/>
+    <file src="fonts\" target="fonts"/>
+    <file src="Scripts\" target="Scripts"/>
+    <file src="Templates\" target="Templates"/>
+    <file src="Views\" target="Views"/>
+    <file src="..\packages\EntityFramework.6.1.0\tools\migrate.exe" target="bin" />
+    <file src="favicon.ico" />
+    <file src="Global.asax" />
+    <file src="Web*config" />
     <file src="*.ps1" />
   </files>
 </package>
