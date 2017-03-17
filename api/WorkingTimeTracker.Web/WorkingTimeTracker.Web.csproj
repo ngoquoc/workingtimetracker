@@ -295,7 +295,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Templates\TimeEntrySummaryReportTemplate.cshtml" />
-    <Content Include="WorkingTimeTracker.Web.API.nuspec" />
+    <Content Include="WorkingTimeTracker.Web.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WorkingTimeTracker.Core\WorkingTimeTracker.Core.csproj">

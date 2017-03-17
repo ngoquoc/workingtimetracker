@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>WorkingTimeTracker.Web.API</id>
+    <id>WorkingTimeTracker.Web</id>
     <title>Working time tracker</title>
     <version>1.0.12</version>
     <authors>Quoc Ngo</authors>
