@@ -1,4 +1,4 @@
-namespace WorkingTimeTracker.Implementations.Migrations
+namespace WorkingTimeTracker.Implementations.Migrations.Auth
 {
     using System;
     using System.Data.Entity.Migrations;

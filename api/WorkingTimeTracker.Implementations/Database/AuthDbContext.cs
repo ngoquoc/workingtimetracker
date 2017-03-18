@@ -4,7 +4,7 @@ namespace WorkingTimeTracker.Implementations.Database
 {
     public class AuthDbContext : IdentityDbContext
     {
-        public AuthDbContext() : base("AuthDb")
+        public AuthDbContext() : base("Auth")
         {
         }
 

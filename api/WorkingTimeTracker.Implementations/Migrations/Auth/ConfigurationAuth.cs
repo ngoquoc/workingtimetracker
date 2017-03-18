@@ -3,14 +3,15 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using WorkingTimeTracker.Core;
 using WorkingTimeTracker.Implementations.Database;
 
-namespace WorkingTimeTracker.Implementations.Migrations
+namespace WorkingTimeTracker.Implementations.Migrations.Auth
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<AuthDbContext>
+
+    internal sealed class ConfigurationAuth : DbMigrationsConfiguration<AuthDbContext>
     {
-        public Configuration()
+        public ConfigurationAuth()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "WorkingTimeTracker.Implementations.Database.AuthDbContext";
+            MigrationsDirectory = @"Migrations\Auth";
         }
 
         protected override void Seed(AuthDbContext context)

@@ -95,11 +95,16 @@
   <ItemGroup>
     <Compile Include="Database\AuthDbContext.cs" />
     <Compile Include="Database\WorkingTimeTrackerDbContext.cs" />
-    <Compile Include="Migrations\201703061420487_InitialCreate.cs" />
-    <Compile Include="Migrations\201703061420487_InitialCreate.Designer.cs">
-      <DependentUpon>201703061420487_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\Auth\201703180750427_InitialCreate.cs" />
+    <Compile Include="Migrations\Auth\201703180750427_InitialCreate.Designer.cs">
+      <DependentUpon>201703180750427_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Auth\ConfigurationAuth.cs" />
+    <Compile Include="Migrations\WorkingTimeTracker\201703180751059_InitialCreate.cs" />
+    <Compile Include="Migrations\WorkingTimeTracker\201703180751059_InitialCreate.Designer.cs">
+      <DependentUpon>201703180751059_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\WorkingTimeTracker\ConfigurationWorkingTimeTracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TimeEntryRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -120,8 +125,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703061420487_InitialCreate.resx">
-      <DependentUpon>201703061420487_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\Auth\201703180750427_InitialCreate.resx">
+      <DependentUpon>201703180750427_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\WorkingTimeTracker\201703180751059_InitialCreate.resx">
+      <DependentUpon>201703180751059_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

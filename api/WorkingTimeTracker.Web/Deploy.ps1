@@ -1,3 +1,8 @@
-﻿$connectionString = $OctopusParameters["SQL.WorkingTimeTracker.DeployConnectionString"]
+﻿$authConnectionString = $OctopusParameters["SQL.Auth.ConnectionString"]
+$wttConnectionString = $OctopusParameters["SQL.WorkingTimeTracker.ConnectionString"]
 
-.\bin\migrate.exe WorkingTimeTracker.Implementations.dll /connectionString="$($connectionString)" /connectionProviderName="System.Data.SqlClient" /verbose
+Write-Host "Updating Auth DB"
+.\bin\migrate.exe WorkingTimeTracker.Implementations.dll ConfigurationAuth /connectionString="$($authConnectionString)" /connectionProviderName="System.Data.SqlClient" /verbose
+
+Write-Host "Updating Working time tracker DB"
+.\bin\migrate.exe WorkingTimeTracker.Implementations.dll ConfigurationWorkingTimeTracker /connectionString="$($wttConnectionString)" /connectionProviderName="System.Data.SqlClient" /verbose

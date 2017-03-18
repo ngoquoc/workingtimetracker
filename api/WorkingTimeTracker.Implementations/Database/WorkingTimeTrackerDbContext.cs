@@ -5,8 +5,8 @@ namespace WorkingTimeTracker.Implementations.Database
 {
     public class WorkingTimeTrackerDbContext : DbContext
     {
-        public WorkingTimeTrackerDbContext(string nameOrConnectionString = "WorkingTimeTracker") 
-            : base(nameOrConnectionString)
+        public WorkingTimeTrackerDbContext() 
+            : base("WorkingTimeTracker")
         {
         }
 
